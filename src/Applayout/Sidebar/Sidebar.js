@@ -15,8 +15,8 @@ const Sidebar = () => {
 
   // Logout functionality
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    sessionStorage.removeItem('token');
+    localStorage.removeItem('authToken');
+    sessionStorage.removeItem('authToken');
     navigate('/login');
   };
 

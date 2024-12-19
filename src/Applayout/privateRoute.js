@@ -1,24 +1,10 @@
 import React from 'react';
-import { Route, useNavigate } from 'react-router-dom';
-import { useAuth } from '../utils/login-util';
+import { Navigate } from 'react-router-dom';
+import { PATH_LOGIN } from "./constants/RouteConstants";
+import { isUserAuthenticated } from '../utils/auth-utils';
 
-// Private route component
-const PrivateRoute = ({ component: Component, ...rest }) => {
-    const { isAuthenticated } = useAuth();
-      const navigate = useNavigate();
-
-    return (
-        <Route
-            {...rest}
-            render={(props) =>
-                isAuthenticated ? (
-                    <Component {...props} />
-                ) : (
-                    navigate('/login')
-                )
-            }
-        />
-    );
-};
-
-export default PrivateRoute;
+const PrivateRoute = ({ element }) => {
+    return isUserAuthenticated() ? element : <Navigate to={PATH_LOGIN} />;
+  };
+  
+  export default PrivateRoute;

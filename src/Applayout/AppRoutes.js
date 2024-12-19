@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 import {
     PATH_LOGIN,
     PATH_REGISTER,
-    PATH_PRODUCT,
     PATH_INVOICE,
     PATH_HOME,
 } from './constants/RouteConstants';
@@ -20,7 +19,7 @@ const AppRoutes = () => {
       <Route path={PATH_LOGIN} element={<LoginPage />} />
       <Route path={PATH_REGISTER} element={<RegisterPage />} />
 
-      <Route path={PATH_PRODUCT} element={<PrivateRoute element={<Product />} />} />
+      <Route path={PATH_HOME} element={<PrivateRoute element={<Product />} />} />
       <Route path={PATH_INVOICE} element={<PrivateRoute element={<Invoice />} />} />
     </Routes>
   );
