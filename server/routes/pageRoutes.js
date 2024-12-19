@@ -7,6 +7,7 @@ const DIR = './public/temp/';
 const router = express.Router();
 const { read, utils } = require('xlsx');
 const Product = require('../models/product');
+const Invoice = require('../models/invoice');
 
 // const auth = require('../controllers/auth');
 // const config = require('../config/secret.json');
@@ -44,6 +45,9 @@ var upload = multer({
 
 router.post('/uploadxl', upload.single('file'), UploadXl);
 router.get('/productData', ProductData);
+router.post('/invoice', InvoiceSubmit);
+router.get('/getinvoice', GetInvoice);
+router.delete('/deleteInvoice/:id', InvoiceDelete);
 
 module.exports = router;
 
@@ -86,9 +90,8 @@ async function UploadXl(req, res) {
       }
     });
 
-    console.log(data);
     const newProduct = Product.insertMany(data);
-    console.log('Product inserted', newProduct);
+    console.log('Product inserted');
   } catch (error) {
     console.log('>>> ERROR', error);
   }
@@ -97,9 +100,52 @@ async function UploadXl(req, res) {
 async function ProductData(req, res) {
   try {
     const response = await Product.find();
-    console.log('>>>', response);
     res.json(response);
   } catch (error) {
     console.log('ERROR', error);
+  }
+}
+
+async function InvoiceSubmit(req, res) {
+  try {
+    console.log(req.body);
+    const newProduct = Invoice.insertMany(req.body);
+    console.log('Product inserted');
+  } catch (error) {
+    console.log('ERROR', error);
+  }
+}
+
+async function GetInvoice(req, res) {
+  try {
+    console.log('>>> Fetching Invoices');
+
+    // Execute the query and retrieve all invoices
+    const invoices = await Invoice.find().lean(); // `.lean()` simplifies the result to plain objects
+
+    // Send the response as JSON
+    res.status(200).json(invoices);
+  } catch (error) {
+    console.error('ERROR', error);
+    res.status(500).json({ error: 'An error occurred while fetching invoices.' });
+  }
+}
+
+async function InvoiceDelete(req, res) {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      return res.status(400).json({ message: "Invoice ID is required." });
+    }
+
+    const result = await Invoice.deleteOne({ _id: id });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "Invoice not found." });
+    }
+
+    res.status(200).json({ message: "Invoice deleted successfully." });
+  } catch (error) {
+    console.error("Error deleting invoice:", error);
+    res.status(500).json({ message: "Internal server error.", error });
   }
 }

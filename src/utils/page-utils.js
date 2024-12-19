@@ -19,3 +19,33 @@ export const getProduct = () => {
     throw error.response ? error.response.data : { message: 'Network Error' };
   }
 };
+
+export const submitInvoice = (obj) => {
+  try {
+    const response = axios.post(`${API_BASE_URL}/page/invoice`, obj);
+    console.log(response);
+    return response;
+  } catch (error) {
+    throw error.response ? error.response.data : { message: 'Network Error' };
+  }
+};
+
+export const getInvoice = () => {
+  try {
+    const response = axios.get(`${API_BASE_URL}/page/getinvoice`, {});
+    console.log(response);
+    return response;
+  } catch (error) {
+    throw error.response ? error.response.data : { message: 'Network Error' };
+  }
+};
+
+export const deleteInvoice = (id) => {
+  try {
+    const response = axios.delete(`${API_BASE_URL}/page/deleteInvoice/${id}`, {});
+    console.log(response);
+    return response;
+  } catch (error) {
+    throw error.response ? error.response.data : { message: 'Network Error' };
+  }
+};

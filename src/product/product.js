@@ -29,7 +29,7 @@ function Product() {
     if (dataProduct.data && dataProduct.data.length > 0) {
       setData(dataProduct.data);
       const filteredKeys = Object.keys(dataProduct.data[0]).filter((key) => !excludeKeys.includes(key));
-      setHead(filteredKeys);
+      setHead(['Part Type', 'Part Description', 'Product Info', 'Color', 'Part Number', 'Quantity', 'Single Price', 'Bulk Price']);
     }
   }
 
@@ -44,30 +44,31 @@ function Product() {
       <h1>Product Page</h1>
       <div className='container mt3'>
         <form>
-          <div className='my-3'>
-            <label className='mx-3'>Upload CSV file:</label>
-            <input
-              onChange={handleFileChange}
-              className='form-control d-inline'
-              style={{ width: '30%' }}
-              type='file'
-              id='fileupload'
-              enctype='multipart/form-data'
-              // accept='.xlsx .xls'
-              required
-            />
-          </div>
-          <div>
-            <button onClick={handleFileUpload} type='submit' className='mx-3 btn btn-primary'>
-              Submit
-            </button>
+          <div className='mt-5 row'>
+            <div className='col-2'><label>Upload CSV file:</label></div>
+            <div className='col-4'>
+              <input
+                onChange={handleFileChange}
+                className='form-control d-inline'
+                type='file'
+                id='fileupload'
+                enctype='multipart/form-data'
+                // accept='.xlsx .xls'
+                required
+              />
+            </div>
+            <div className='col-2'>
+              <button onClick={handleFileUpload} type='submit' className='mx-3 btn btn-primary'>
+                Submit
+              </button>
+            </div>
           </div>
         </form>
       </div>
       <div className='mt-5'>
-        {data && data.length > 0 && (
-          <table class='table table-light'>
-            <thead>
+        {data && data.length > 0 ? (
+          <table className='table'>
+            <thead className='table-dark'>
               <tr>
                 <th scope='col'>#</th>
                 {head && head.map((i) => <th scope='col'>{i}</th>)}
@@ -82,14 +83,16 @@ function Product() {
                     <td>{item.PartDescription}</td>
                     <td>{item.ProductInfo}</td>
                     <td>{item.Color}</td>
-                    <td>{item.Quantity}</td>
                     <td>{item.PartNumber}</td>
+                    <td>{item.Quantity}</td>
                     <td>{item.SingleP}</td>
                     <td>{item.BulkP}</td>
                   </tr>
                 ))}
             </tbody>
           </table>
+        ) : (
+          'No Record Available'
         )}
       </div>
     </>
