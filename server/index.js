@@ -1,26 +1,15 @@
-import express from 'express';
-import mongoose from 'mongoose';
+require('./config/db')
+const express = require('express');
 const port = 3000;
-
+const cors = require('cors');
+const bodyParser = require('body-parser');
 const app = express();
 
-const mongoURI = 'mongodb+srv://user000:USERDB@cluster0.ekfoe.mongodb.net/invoice?retryWrites=true&w=majority';
-try {
-  mongoose
-  .connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log('Connected to MongoDB');
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err);
-  });
-} catch(error) {
-console.log('ee', error)
-}
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/api/v1', require('./routes/authRoute'));
 
 app.listen(port, () => {
   console.log('running at port', port);

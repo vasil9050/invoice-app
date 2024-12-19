@@ -1,0 +1,22 @@
+.sc-cfxfcM {
+    border-radius: 50px;
+}
+
+.item-content {
+    padding: 10px;
+}
+
+/* Customize the logout button */
+.btn-danger {
+    width: 80%;
+    padding: 10px 0;
+    font-size: 16px; 
+    border-radius: 5px;
+    margin-top: 20px;
+    border-radius: 50px;
+  }
+  
+  .btn-danger:hover {
+    background-color: #e74c3c; /* Darker red on hover */
+  }
+  

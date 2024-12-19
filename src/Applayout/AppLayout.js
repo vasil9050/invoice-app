@@ -1,7 +1,5 @@
 import { useLocation } from 'react-router-dom';
 import AppRoutes from "./AppRoutes";
-import AppHeader from "./Header/Header.js";
-import AppFooter from "./Footer/Footer.js";
 import SideBar from './Sidebar/Sidebar.js';
 import LoginPage from "../Auth/LoginPage.js";
 import RegisterPage from "../Auth/RegisterPage.js";
@@ -30,24 +28,14 @@ export default function AppLayout() {
         <RegisterPage />
       ) : (
         <>
-          <header className="bg-light">
-            <AppHeader />
-          </header>
           <div className="d-flex flex-grow-1">
             <div id="sidebar" className="text-white">
               <SideBar />
             </div>
             <main className="flex-fill overflow-auto" style={{ padding: '24px' }}>
               {renderBody()}
-              {/* <AppFooter /> */}
-              {/* <div style={{ paddingTop: '15px' }}>
-                Footer
-              </div> */}
             </main>
           </div>
-          <footer className="bg-light">
-            <AppFooter />
-          </footer>
         </>
       )}
     </div>
