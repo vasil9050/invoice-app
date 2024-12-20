@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { loginUser } from '../utils/auth-utils';
 import { useNavigate } from 'react-router-dom';
+import './authentication.css';
 // import { isUserAuthenticated } from '../utils/auth-utils';
 
 function LoginPage() {
@@ -36,7 +37,7 @@ function LoginPage() {
 
   return (
     <div className='d-flex justify-content-center align-items-center vh-100'>
-      <div className='card p-4 shadow-lg' style={{ width: '400px' }}>
+      <div className='card p-4 shadow-lg' style={{ width: '400px', borderRadius: '25px' }}>
         <h3 className='text-center'>Login</h3>
         <form onSubmit={handleSubmit}>
           <div className='mb-3'>
@@ -67,9 +68,21 @@ function LoginPage() {
               required
             />
           </div>
-          <button type='submit' className='btn btn-primary w-100'>
+          <button type='submit' className='btn btn-outline-primary w-100'>
             Login
           </button>
+          <p
+            style={{
+              fontSize: '0.8rem',
+              color: 'grey',
+              cursor: 'pointer',
+              textAlign: 'center',
+              marginTop: '10px',
+            }}
+            onClick={() => navigate('/register')}
+          >
+            Register if not a user
+          </p>
         </form>
         {message && <p className='mt-3 text-success text-center'>{message}</p>}
       </div>

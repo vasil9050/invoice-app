@@ -1,41 +1,46 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
   partType: {
     type: String,
     required: true,
-    description: "Type of part",
+    description: 'Type of part',
   },
   partDescription: {
     type: String,
     required: true,
-    description: "Description of the part",
+    description: 'Description of the part',
   },
   color: {
     type: String,
     required: true,
-    description: "Color of the product",
+    description: 'Color of the product',
   },
   quantity: {
     type: String,
     required: false,
-    description: "Quantity of the product, can be empty if single",
+    description: 'Quantity of the product, can be empty if single',
   },
   partNumber: {
     type: String,
     required: true,
-    description: "Unique identifier for the part",
+    description: 'Unique identifier for the part',
   },
   productInfo: {
     type: String,
     required: true,
-    description: "Additional information about the product",
+    description: 'Additional information about the product',
   },
   selectionType: {
     type: String,
-    enum: ["single", "bulk"],
+    enum: ['single', 'bulk'],
     required: true,
     description: "Selection type, either 'single' or 'bulk'",
+  },
+  amount: {
+    type: String,
+    required: true,
+    description: 'amount quantity total',
   },
 });
 
@@ -43,20 +48,20 @@ const invoiceSchema = new mongoose.Schema({
   customerName: {
     type: String,
     required: true,
-    description: "Name of the customer",
+    description: 'Name of the customer',
   },
   date: {
     type: Date,
     required: true,
-    description: "Date of the invoice",
+    description: 'Date of the invoice',
   },
   products: {
     type: [productSchema],
     required: true,
-    description: "List of products in the invoice",
+    description: 'List of products in the invoice',
   },
 });
 
-const Invoice = mongoose.model("Invoice", invoiceSchema);
+const Invoice = mongoose.model('Invoice', invoiceSchema);
 
 module.exports = Invoice;

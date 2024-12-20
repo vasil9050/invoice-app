@@ -67,27 +67,24 @@ async function loginUser(req, res, next) {
       return res.status(400).json({ message: 'Email and password are required.' });
     }
 
-    const user = await auth.loginUsers(req.body);
+    // Call loginUsers function
+    const result = await auth.loginUsers(req.body);
 
-    if (!user) {
-      console.log('User not found or incorrect credentials:', { email });
-      return res.status(401).json({ message: 'Invalid email or password.' });
+    // Check if login was successful
+    if (!result.success) {
+      console.log('Login failed:', result.message, { email });
+      return res.status(401).json({ message: result.message });
     }
 
-    const token = jwt.sign(
-      {
-        User_Id: user._id,
-        UserEmail: user.email,
-      },
-      config.secret,
-      { expiresIn: '2 days' }
-    );
+    console.log('User logged in successfully:', {
+      userId: result.data._id,
+      email: result.data.email,
+    });
 
-    console.log('User logged in successfully:', { userId: user._id, email: user.email });
-
+    // Return the response
     return res.json({
-      data: user,
-      token,
+      data: result.data,
+      token: result.token,
     });
   } catch (error) {
     console.error('Error during login:', error.message);

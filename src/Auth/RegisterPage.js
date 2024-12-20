@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { registerUser } from '../utils/auth-utils';
 // import { isUserAuthenticated } from '../utils/auth-utils';
 import { useNavigate } from 'react-router-dom';
+import './authentication.css';
 
 function RegisterPage() {
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
@@ -27,6 +28,9 @@ function RegisterPage() {
     try {
       const data = await registerUser(formData);
       setMessage(data.message || 'Registration successful!');
+      setTimeout(() => {
+        navigate('/login');
+      }, 1000);
     } catch (error) {
       setMessage(error.message || 'An error occurred during registration.');
     }
@@ -34,7 +38,7 @@ function RegisterPage() {
 
   return (
     <div className='d-flex justify-content-center align-items-center vh-100'>
-      <div className='card p-4 shadow-lg' style={{ width: '400px' }}>
+      <div className='card p-4 shadow-lg' style={{ width: '400px', borderRadius: '25px' }}>
         <h3 className='text-center'>Register</h3>
         <form onSubmit={handleSubmit}>
           <div className='mb-3'>
@@ -79,9 +83,21 @@ function RegisterPage() {
               required
             />
           </div>
-          <button type='submit' className='btn btn-primary w-100'>
+          <button type='submit' className='btn btn-outline-primary w-100'>
             Register
           </button>
+          <p
+            style={{
+              fontSize: '0.8rem',
+              color: 'grey',
+              cursor: 'pointer',
+              textAlign: 'center',
+              marginTop: '10px',
+            }}
+            onClick={() => navigate('/login')}
+          >
+            Login if already a user
+          </p>
         </form>
         {message && <p className='mt-3 text-success text-center'>{message}</p>}
       </div>

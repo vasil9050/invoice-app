@@ -1,3 +1,77 @@
 input, select{
     background-color: rgb(234, 234, 234) !important;
 }
+
+h1 {
+    display: inline-block;
+    border: 2px solid black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 10px auto;
+}
+
+.container {
+    padding: 10px;
+    max-width: 100%;
+  }
+  
+  form {
+    width: 100%;
+  }
+  
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  table {
+    width: 100%; /* Make the table fit within the card */
+    border-collapse: collapse;
+    table-layout: auto; /* Dynamic column widths */
+  }
+  
+  thead th {
+    text-align: left;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  tbody td,
+  tbody th {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .card {
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+  }
+  
+  @media (max-width: 768px) {
+    table {
+      font-size: 0.9rem;
+    }
+  
+    thead th,
+    tbody td {
+      padding: 8px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    table {
+      font-size: 0.8rem;
+    }
+  
+    thead th,
+    tbody td {
+      padding: 6px;
+    }
+  }
+  

@@ -1,0 +1,55 @@
+.cardcomp {
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
+  width: 90%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.card-body {
+  font-size: 1rem;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 15px;
+  }
+
+  .card-header {
+    font-size: 1.25rem;
+  }
+
+  .card-body {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 10px;
+  }
+
+  .card-header {
+    font-size: 1rem;
+  }
+
+  .card-body {
+    font-size: 0.85rem;
+  }
+}

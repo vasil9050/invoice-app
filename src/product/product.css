@@ -1,4 +1,12 @@
 table {
     border: 2px solid forestgreen;
-    width: 800px;
+    width: inherit;
+}
+
+h1 {
+    display: inline-block;
+    border: 2px solid black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 10px auto;
 }
